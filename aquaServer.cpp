@@ -7,6 +7,8 @@ const char* ssid = "Smth"; //This should be altered to whatever Darius has.
 const char* password = "Password";
 WebServer server(80);
 
+#include"pages.h"
+
 void startServer(){
   WiFi.disconnect();
   WiFi.begin(ssid, password);  
@@ -35,6 +37,11 @@ void startServer(){
   Serial.println(WiFi.localIP());
   displayConnection(1); //1 = connected
 
+
+  server.on("/", home);
+  server.on("/lights", lights);
+  server.on("/motors", motor);
+  server.on("/sensors", sensors);
   //Set up the web server to handle different routes
   server.on("/", navLoop);
   //server.on("/26/off", handleGPIO26Off);
