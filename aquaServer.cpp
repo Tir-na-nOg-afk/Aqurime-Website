@@ -2,12 +2,36 @@
 #include <aquaServer.h>
 #include <WiFi.h>
 #include <DisplayHandler.h>
+#include "shared.h"
 
 const char* ssid = "Smth"; //This should be altered to whatever Darius has.
 const char* password = "Password";
 WebServer server(80);
 
 #include"pages.h"
+
+void apiMotor(){
+  char bf[200];
+  snprintf(buf, sizeof(buf),R"({"phase":%6, "t":%.lf,"pl":%lf,"max":%.0f,"times": [%.0f,%.0f,%.0f,%.0f]})",(int)phase,currentPhase / 1000.0f, pump1Strength, pump2Strength, maxStrength, phaseTimes[0], phaseTimes[1], phaseTimes[2], phaseTimes[3]);
+  server.send(200, "application/json", buf);
+}
+
+void  apiSetPhase(){
+  if (!server.hasArg("p")){
+    server.send(400, "text/plain", "missing p");
+    return;
+  }
+  int p = server.arg("p").toInt();
+  if (p < 0 || p > 3) {
+    server.send(400, "text/plain", "bad phase");
+    return;
+  }
+  phase = (Phase)p;
+  currentPhaseTime = 0;
+  pump1Strength = 0;
+  pump2Strength = 0;
+  server.send(200, "text/plain", "ok");
+}
 
 void startServer(){
   WiFi.disconnect();
@@ -40,7 +64,7 @@ void startServer(){
 
   server.on("/", home);
   server.on("/lights", lights);
-  server.on("/motors", motor);
+  server.on("/motors", motors);
   server.on("/sensors", sensors);
   //Set up the web server to handle different routes
   server.on("/", navLoop);
