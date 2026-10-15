@@ -12,7 +12,7 @@ WebServer server(80);
 
 void apiMotor(){
   char buf[200];
-  snprintf(buf, sizeof(buf),R"({"phase":%6, "t":%.lf,"pl":%lf,"max":%.0f,"times": [%.0f,%.0f,%.0f,%.0f]})",(int)phase,currentPhaseTime / 1000.0f, pump1Strength, pump2Strength, maxStrength, phaseTimes[0], phaseTimes[1], phaseTimes[2], phaseTimes[3]);
+  snprintf(buf, sizeof(buf),R"({"phase":%d,"t":%.1f,"p1":%1f,"p2":%.1f,"max":%.0f,"times": [%.0f,%.0f,%.0f,%.0f]})",(int)phase,currentPhaseTime / 1000.0f, pump1Strength, pump2Strength, maxStrength, phaseTimes[0], phaseTimes[1], phaseTimes[2], phaseTimes[3]);
   server.send(200, "application/json", buf);
 }
 

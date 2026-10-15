@@ -8,7 +8,7 @@ const char baseCss[] = R"rawliteral(
   body{
     margin:0;
     font-family:Arial;
-    backgrond:black;
+    background:black;
     color:white
   }
   .navbar{
@@ -34,7 +34,7 @@ const char baseCss[] = R"rawliteral(
   .content{
     padding:40px;
     text-align:center;
-    max-width:1100;
+    max-width:1100px;
     margin:0 auto
   }
   h1{
@@ -231,7 +231,7 @@ svg .lg2{
 }
 .row{
   display:flex;
-  align-iteams:center;
+  align-items:center;
   gap:10px;
   margin:8px 0
 }
@@ -256,7 +256,7 @@ summary{
 )rawliteral";
 
 const char motorsBody[] = R"rawliteral(
-<div class='c ontent'>
+<div class='content'>
   <h1>Motors</h1>
 
   <div class='card'>
@@ -298,19 +298,19 @@ const char motorsBody[] = R"rawliteral(
 
   <div class='card'>
     <h3>Live strength</h3>
-    <div class='row'><label>Pump 1</label><meter id='m1' min='0' max='100' value='0'></meter><outputid='v1'>0</output></div>
-    <div class='row'><label>Pump 2</label><meter id='m2' min='0' max='100' value='0'></meter><outputid='v2'>0</output></div>
+    <div class='row'><label>Pump 1</label><meter id='m1' min='0' max='100' value='0'></meter><output id='v1'>0</output></div>
+    <div class='row'><label>Pump 2</label><meter id='m2' min='0' max='100' value='0'></meter><output id='v2'>0</output></div>
   </div>
 
   <div class='card'>
     <details>
       <summary>Period (phase lengths)</summary>
-      <div class='row'><label for='len0'>Flood tide</label><input type='range' id='len0' min='0' max='21600'step='900' value='0' oninput='showLen(0)' onchange='sendLen(0)'><output id='out0'></output></div>
-      <div class='row'><label for='len1'>High slack</label><input type='range' id='len1' min='0' max='21600'step='900' value='0' oninput='showLen(1)' onchange='sendLen(1)'><output id='out1'></output></div>
-      <div class='row'><label for='len2'>Ebb tide</label><input type='range' id='len2' min='0' max='21600'step='900' value='0' oninput='showLen(2)' onchange='sendLen(2)'><output id='out2'></output></div>
-      <div class='row'><label for='len3'>Low slack</label><input type='range' id='len3' min='0' max='21600'step='900' value='0' oninput='showLen(3)' onchange='sendLen(3)'><output id='out3'></output></div>
+      <div class='row'><label for='len0'>Flood tide</label><input type='range' id='len0' min='0' max='21600' step='900' value='0' oninput='showLen(0)' onchange='sendLen(0)'><output id='out0'></output></div>
+      <div class='row'><label for='len1'>High slack</label><input type='range' id='len1' min='0' max='21600' step='900' value='0' oninput='showLen(1)' onchange='sendLen(1)'><output id='out1'></output></div>
+      <div class='row'><label for='len2'>Ebb tide</label><input type='range' id='len2' min='0' max='21600' step='900' value='0' oninput='showLen(2)' onchange='sendLen(2)'><output id='out2'></output></div>
+      <div class='row'><label for='len3'>Low slack</label><input type='range' id='len3' min='0' max='21600' step='900' value='0' oninput='showLen(3)' onchange='sendLen(3)'><output id='out3'></output></div>
     </details>
-    <div class='row'><label for='maxStrength'>Max strength</label><input type='number' id='maxStrength' min='0'max='100' value='100' onchange='sendMax()'></div>
+    <div class='row'><label for='maxStrength'>Max strength</label><input type='number' id='maxStrength' min='0' max='100' value='100' onchange='sendMax()'></div>
   </div>
 </div>
 )rawliteral";
