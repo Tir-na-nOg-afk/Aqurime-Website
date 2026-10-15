@@ -11,8 +11,8 @@ WebServer server(80);
 #include"pages.h"
 
 void apiMotor(){
-  char bf[200];
-  snprintf(buf, sizeof(buf),R"({"phase":%6, "t":%.lf,"pl":%lf,"max":%.0f,"times": [%.0f,%.0f,%.0f,%.0f]})",(int)phase,currentPhase / 1000.0f, pump1Strength, pump2Strength, maxStrength, phaseTimes[0], phaseTimes[1], phaseTimes[2], phaseTimes[3]);
+  char buf[200];
+  snprintf(buf, sizeof(buf),R"({"phase":%6, "t":%.lf,"pl":%lf,"max":%.0f,"times": [%.0f,%.0f,%.0f,%.0f]})",(int)phase,currentPhaseTime / 1000.0f, pump1Strength, pump2Strength, maxStrength, phaseTimes[0], phaseTimes[1], phaseTimes[2], phaseTimes[3]);
   server.send(200, "application/json", buf);
 }
 
@@ -30,6 +30,31 @@ void  apiSetPhase(){
   currentPhaseTime = 0;
   pump1Strength = 0;
   pump2Strength = 0;
+  server.send(200, "text/plain", "ok");
+}
+
+void apiSetPhaseTime(){
+  if(!server.hasArg("p") || !server.hasArg("s")){
+    server.send(400, "text/plain", "missing p or s");
+    return;
+  }
+  int p = server.arg("p").toInt();
+  float s = server.arg("s").toFloat();
+  if (p < 0 || p > 3){ 
+    server.send(400, "text/plain", "bad phase");
+    return;
+  }
+  if (s < 1) s = 1;
+  phaseTimes[p] = s;
+  server.send(200, "text/plain", "ok");
+}
+
+void apiMaxStrength(){
+  if(!server.hasArg("v")){
+    server.send(400, "text/plain", "missing v");
+    return;
+  }
+  maxStrength = constrain(server.arg("v").toFloat(), 0, MAX_STRENGTH_LIMIT);
   server.send(200, "text/plain", "ok");
 }
 
@@ -66,6 +91,10 @@ void startServer(){
   server.on("/lights", lights);
   server.on("/motors", motors);
   server.on("/sensors", sensors);
+  server.on("/api/motor", apiMotor);
+  server.on("/api/setPhase", apiSetPhase);
+  server.on("/api/setPhaseTime", apiSetPhaseTime);
+  server.on("/api/maxStrength", apiMaxStrength);
   //Set up the web server to handle different routes
   server.on("/", navLoop);
   //server.on("/26/off", handleGPIO26Off);
