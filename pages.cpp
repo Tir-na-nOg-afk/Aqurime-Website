@@ -7,12 +7,12 @@ extern WebServer server;
 const char baseCss[] = R"rawliteral(
   body{
     margin:0;
-    font-family:Arial;
-    background:black;
-    color:white
+    font-family:'Trebuchet MS',Tahoma,Verdana,sans-serif;
+    background:#eaf4f8;
+    color:#14364a
   }
   .navbar{
-    background:#111;
+    background:#0b6e99;
     overflow:hidden;
     padding:10px
   }
@@ -24,12 +24,14 @@ const char baseCss[] = R"rawliteral(
     font-size:18px
   }
   .navbar a:hover{
-    background:#333;
-    border-radius:5px
+    background:#ffffff;
+    color:#0b6e99;
+    border-radius:20px
   }
   .navbar a.active{
-    background:#333;
-    border-radius:5px
+    background:#ffffff;
+    color:#0b6e99;
+    border-radius:20px
   }
   .content{
     padding:40px;
@@ -45,8 +47,9 @@ const char baseCss[] = R"rawliteral(
     margin:0 0 10px
   }
   .card{
-    background:#111;
-    border-radius:8px;
+    background:#ffffff;
+    border:1px solid #c5dde8;
+    border-radius:16px;
     padding:16px;
     margin: 12px 0;
     text-align:left
@@ -99,14 +102,13 @@ const char homeCss[] = R"rawliteral(
     position:sticky;
     top:0;
     padding:16px 24px;
-    background:linear-gradient(90deg,#0d1b2a,#1b4332);
-    box-shadow:0 2px 10px #000
+    background:#0b6e99
   }
   .navbar.big .brand{
     float:left;
     font-size:26px;
     font-weight:bold;
-    color:#9be3b8;
+    color:#ffffff;
     padding:10px 28px 10px 0
   }
   .navbar.big a{
@@ -115,7 +117,9 @@ const char homeCss[] = R"rawliteral(
     margin-right:6px
   }
   .navbar.big a:hover,.navbar.big a.active{
-    background:#2d6a4f
+    background:#ffffff;
+    color:#0b6e99;
+    border-radius:20px
   }
   .tiles{
     display:grid;
@@ -124,10 +128,17 @@ const char homeCss[] = R"rawliteral(
     margin-top:30px
   }
   .tile{
-    display:block;background:#111;border-radius:12px;padding:28px 10px;color:white;text-decoration:none;font-size:22px
+    display:block;
+    background:#ffffff;
+    border:1px solid #c5dde8;
+    border-radius:16px;
+    padding:28px 10px;
+    color:#14364a;
+    text-decoration:none;
+    font-size:22px
   }
   .tile:hover{
-    background:#1b4332
+    background:#d8eef7
   }
   @media (max-width:700px){
     .navbar.big{
@@ -175,19 +186,24 @@ const char motorsCss[] = R"rawliteral(
 .phaseBox{
   flex:1;
   padding:14px 4px;
-  background:#555555;
-  color:white;
+  background:#d8e8ef;
+  color:#14364a;
   border:none;
-  border-radius:6px;
+  border-radius:20px;
   font-size:16px;
+  font-family:inherit;
   cursor:pointer
 }
 .phaseBox.on{
-  background:#4CAF50
+  background:#0b6e99;
+  color:#ffffff
 }
 progress{
   width:100%;
   height:10px
+}
+input,progress,meter{
+  accent-color:#0b6e99
 }
 svg{
   width:100%;
@@ -195,13 +211,13 @@ svg{
   display:block
 }
 .band{
-  fill:#1b1b1b
+  fill:#f3f9fb
 }
 .band.on{
-  fill:#17331f
+  fill:#d4ebf5
 }
 .axis{
-  stroke:#666;
+  stroke:#9bb5c2;
   stroke-width:1
 }
 .curve{
@@ -209,25 +225,25 @@ svg{
   stroke-width:3
 }
 .p1{
-  stroke:#2196f3
+  stroke:#0b6e99
 }
 .p2{
-  stroke:#FF9800
+  stroke:#f08a24
 }
 .marker{
-  stroke:red;
+  stroke:#d62839;
   stroke-width:2;
   stroke-dasharray:6 4
 }
 svg text{
-  fill:#aaa;
+  fill:#4a6a7a;
   font-size:12px
 }
 svg .lg1{
-  fill:#2196F3
+  fill:#0b6e99
 }
 svg .lg2{
-  fill:#FF9800
+  fill:#f08a24
 }
 .row{
   display:flex;
